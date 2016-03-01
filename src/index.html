@@ -1,0 +1,83 @@
+<!doctype html>
+<html ng-app="test">
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="container ng-cloak" ng-controller="MainController as vm">
+
+      <form name="form" action="#">
+        <div class="inputs">
+          <span class="a" ng-class="{ 'hl' : vm._a != vm.a }">{{ vm._a }}</span>
+          +
+          <span class="a" ng-class="{ 'hl' : vm._b != vm.b }">{{ vm._b }}</span>
+          =
+          <span class="c" ng-show="vm.c == (vm._a + vm._b)">{{ vm._a + vm._b }}</span>
+          <input ng-show="vm.a == vm._a && vm.b == vm._b && vm.c != (vm._a + vm._b)" type="number" class="form-control has-error" ng-model="vm.c" value="" name="c" id="c">
+          <span class="" ng-hide="vm.a == vm._a && vm.b == vm._b">?</span>
+
+           <a href="javascript:location.reload();"><span class="glyphicon glyphicon-refresh" ng-show="vm.c && vm.c == vm.a + vm.b"> Заново</span></a>
+        </div>
+      </form>
+    
+      <div id="canvas-wrap">
+          <div id="a-wrap">
+            <input type="number" ng-hide="vm.a == vm._a" ng-class="{ 'has-error' : vm.a != vm._a }" 
+            class="form-control" name="a"
+            ng-model="vm.a" id="a" ng-min=6 ng-max=9 required>
+            <span class="num-replacement" ng-show="vm.a == vm._a">{{ vm._a }}</span>
+          </div>
+          <div id="b-wrap">
+            <input type="number" ng-show="vm.a == vm._a && vm.b != vm._b" ng-class="{ 'has-error' : vm.b != vm._b }" 
+              class="form-control" name="b" 
+              ng-model="vm.b" id="b" ng-min="11 - vm.a" ng-max="14 - vm.a" required>
+            <span class="num-replacement" ng-show="vm.b == vm._b">{{ vm._b }}</span>
+          </div>
+        <!-- <input type="number"class="form-control" name="aa" id="aa" ng-min=6 ng-max=9 required> -->
+        <canvas id="canvas" style="width: 780px; height: 200px;"></canvas>
+      </div>
+      <img class="ruler" src="assets/images/sprite.png" alt="">
+    
+    </div>
+
+    
+    
+
+    <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- run `gulp inject` to automatically populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automatically insert here -->
+    <!-- endinject -->
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+  </body>
+</html>
